@@ -1,19 +1,15 @@
 import React, { useState } from "react";
-import Error from './Error';
+import Error from "./Error";
 
-const Formulario = () => {
-  const [busqueda, setBusqueda] = useState({
-    ciudad: "",
-    pais: "",
-  });
+const Formulario = ({buscador, setBuscador, setConsultar}) => {
 
   const [error, setError] = useState(false);
 
-  const { ciudad, pais } = busqueda;
+  const { ciudad, pais } = buscador;
 
   const handleChange = (e) => {
-    setBusqueda({
-      ...busqueda,
+    setBuscador({
+      ...buscador,
       [e.target.name]: e.target.value,
     });
   };
@@ -21,17 +17,24 @@ const Formulario = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (ciudad.trim() === "" || pais.trim() === "") {
+    if (ciudad.trim() === '' || pais.trim() === '') {
       setError(true);
+      return;   
     }
 
     setError(false);
+
+    ///consultar
+    setConsultar(true);
+    
   };
 
   return (
     <form onSubmit={handleSubmit}>
       {error ? (
-        <div className="red darken-4"><Error mensaje="Todos los campos estan vacios"/></div>
+        <div className="red darken-4">
+          <Error mensaje="Todos los campos estan vacios" />
+        </div>
       ) : null}
 
       <div className="input-field col 12">
@@ -66,7 +69,6 @@ const Formulario = () => {
           className="waves-effect waves-light btn-large btn-block yellow accent-4"
         />
       </div>
-
     </form>
   );
 };
