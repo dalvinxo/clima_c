@@ -58,6 +58,7 @@ const Formulario = ({buscador, setBuscador, setConsultar}) => {
           <option value="CR">Costa Rica</option>
           <option value="ES">España</option>
           <option value="PE">Perú</option>
+          <option value="DO">República Dominicana</option>
         </select>
         <label htmlFor="pais">País: </label>
       </div>
